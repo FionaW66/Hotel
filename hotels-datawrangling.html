@@ -2108,8 +2108,29 @@ bookings in this dataset? Are there any surprising results?</p>
 informative, and shouldn’t include spaces. It also shouldn’t repeat a
 previous label, otherwise R Markdown will give you an error about
 repeated R chunk labels.</p>
-<pre class="r"><code># add code here
-# pay attention to correctness and code style</code></pre>
+<p>The most common number of adults in booking is 2. 403 bookings have 0
+adults, which is surprising. There are a couple 20 +, which is weird
+too.</p>
+<pre class="r"><code>hotels %&gt;% 
+  count(adults) %&gt;% 
+  arrange(desc(n))</code></pre>
+<pre><code>## # A tibble: 14 × 2
+##    adults     n
+##     &lt;dbl&gt; &lt;int&gt;
+##  1      2 89680
+##  2      1 23027
+##  3      3  6202
+##  4      0   403
+##  5      4    62
+##  6     26     5
+##  7      5     2
+##  8     20     2
+##  9     27     2
+## 10      6     1
+## 11     10     1
+## 12     40     1
+## 13     50     1
+## 14     55     1</code></pre>
 </div>
 <div id="exercise-6." class="section level3">
 <h3>Exercise 6.</h3>
@@ -2119,8 +2140,43 @@ repeated R chunk labels.</p>
 surprising results you spotted in the previous exercise?</p>
 <p><strong>Note:</strong> Don’t forget to label your R chunk as well
 (where it says <code>label-me-2</code>).</p>
-<pre class="r"><code># add code here
-# pay attention to correctness and code style</code></pre>
+<p>For the canceled bookings, we can see that those really high numbers
+of adults all canceled. For 0 adults, some canceled, but majority
+didn’t, indicating that some hotels are letting children book by
+themselves.</p>
+<pre class="r"><code>hotels %&gt;% 
+  filter(is_canceled == 1) %&gt;% 
+  count(adults) %&gt;% 
+  arrange(desc(n))</code></pre>
+<pre><code>## # A tibble: 14 × 2
+##    adults     n
+##     &lt;dbl&gt; &lt;int&gt;
+##  1      2 35258
+##  2      1  6674
+##  3      3  2151
+##  4      0   109
+##  5      4    16
+##  6     26     5
+##  7      5     2
+##  8     20     2
+##  9     27     2
+## 10      6     1
+## 11     10     1
+## 12     40     1
+## 13     50     1
+## 14     55     1</code></pre>
+<pre class="r"><code>hotels %&gt;% 
+  filter(is_canceled == 0) %&gt;% 
+  count(adults) %&gt;% 
+  arrange(desc(n))</code></pre>
+<pre><code>## # A tibble: 5 × 2
+##   adults     n
+##    &lt;dbl&gt; &lt;int&gt;
+## 1      2 54422
+## 2      1 16353
+## 3      3  4051
+## 4      0   294
+## 5      4    46</code></pre>
 </div>
 <div id="exercise-7." class="section level3">
 <h3>Exercise 7.</h3>

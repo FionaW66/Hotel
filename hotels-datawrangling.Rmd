@@ -110,9 +110,12 @@ Your label should be short, informative, and shouldn't include spaces. It also
 shouldn't repeat a previous label, otherwise R Markdown will give you an 
 error about repeated R chunk labels.
 
-```{r label-me-1}
-# add code here
-# pay attention to correctness and code style
+The most common number of adults in booking is 2. 403 bookings have 0 adults, which is surprising. There are a couple 20 +, which is weird too. 
+
+```{r adult frequency}
+hotels %>% 
+  count(adults) %>% 
+  arrange(desc(n))
 ```
 
 ### Exercise 6.
@@ -123,9 +126,19 @@ reveal about the surprising results you spotted in the previous exercise?
 
 **Note:** Don't forget to label your R chunk as well (where it says `label-me-2`). 
 
-```{r label-me-2}
-# add code here
-# pay attention to correctness and code style
+For the canceled bookings, we can see that those really high numbers of adults all canceled. For 0 adults, some canceled, but majority didn't, indicating that some hotels are letting children book by themselves.
+
+```{r canceled adult frequency}
+hotels %>% 
+  filter(is_canceled == 1) %>% 
+  count(adults) %>% 
+  arrange(desc(n))
+```
+```{r not canceled adult frequency}
+hotels %>% 
+  filter(is_canceled == 0) %>% 
+  count(adults) %>% 
+  arrange(desc(n))
 ```
 
 ### Exercise 7.
