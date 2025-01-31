@@ -1,6 +1,6 @@
 ---
 title: "Hotel bookings - data wrangling"
-author: "YOU"
+author: "Fiona Wang"
 date: "`r Sys.Date()`"
 output: 
   html_document: 
@@ -49,8 +49,8 @@ try out.
 ```{r travel-whim, eval=FALSE}
 hotels %>%
   filter(
-    country ____ "USA", 
-    lead_time ____ ____
+    country != "USA", 
+    lead_time < 1
     )
 ```
 
