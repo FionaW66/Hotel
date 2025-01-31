@@ -2036,7 +2036,7 @@ two places)</li>
 when you have an answer you want to try out.</p>
 <pre class="r"><code>hotels %&gt;%
   filter(
-    children [AT LEAST] 1 [OR] babies [AT LEAST] 1
+    children &gt;= 1 | babies &gt;= 1
     )</code></pre>
 </div>
 <div id="exercise-4." class="section level3">
@@ -2047,10 +2047,55 @@ babies in city hotels or resort hotels? Test your intuition. Using
 that have more than 1 child <strong>or</strong> baby in the room? Then,
 do the same for city hotels, and compare the numbers of rows in the
 resulting filtered data frames.</p>
-<pre class="r"><code># add code here
-# pay attention to correctness and code style</code></pre>
-<pre class="r"><code># add code here
-# pay attention to correctness and code style</code></pre>
+<p>My intuition tells me that it’s more likely to find bookings with
+children or babies in city hotels. Resort: 3929 City: 5403 City hotels
+have more children or babies.</p>
+<pre class="r"><code>hotels %&gt;% 
+  filter(hotel == &quot;Resort Hotel&quot;) %&gt;% 
+  filter(children &gt;= 1 | babies &gt;= 1)</code></pre>
+<pre><code>## # A tibble: 3,929 × 32
+##    hotel        is_canceled lead_time arrival_date_year arrival_date_month
+##    &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;             
+##  1 Resort Hotel           0        18              2015 July              
+##  2 Resort Hotel           1        47              2015 July              
+##  3 Resort Hotel           0         1              2015 July              
+##  4 Resort Hotel           0        10              2015 July              
+##  5 Resort Hotel           1        79              2015 July              
+##  6 Resort Hotel           0       101              2015 July              
+##  7 Resort Hotel           0        92              2015 July              
+##  8 Resort Hotel           1        26              2015 July              
+##  9 Resort Hotel           0       102              2015 July              
+## 10 Resort Hotel           0        78              2015 July              
+## # ℹ 3,919 more rows
+## # ℹ 27 more variables: arrival_date_week_number &lt;dbl&gt;,
+## #   arrival_date_day_of_month &lt;dbl&gt;, stays_in_weekend_nights &lt;dbl&gt;,
+## #   stays_in_week_nights &lt;dbl&gt;, adults &lt;dbl&gt;, children &lt;dbl&gt;, babies &lt;dbl&gt;,
+## #   meal &lt;chr&gt;, country &lt;chr&gt;, market_segment &lt;chr&gt;,
+## #   distribution_channel &lt;chr&gt;, is_repeated_guest &lt;dbl&gt;,
+## #   previous_cancellations &lt;dbl&gt;, previous_bookings_not_canceled &lt;dbl&gt;, …</code></pre>
+<pre class="r"><code>hotels %&gt;% 
+  filter(hotel == &quot;City Hotel&quot;) %&gt;% 
+  filter(children &gt;= 1 | babies &gt;= 1)</code></pre>
+<pre><code>## # A tibble: 5,403 × 32
+##    hotel      is_canceled lead_time arrival_date_year arrival_date_month
+##    &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;             
+##  1 City Hotel           1       100              2015 July              
+##  2 City Hotel           0        69              2015 July              
+##  3 City Hotel           0        67              2015 July              
+##  4 City Hotel           1        60              2015 July              
+##  5 City Hotel           0         0              2015 July              
+##  6 City Hotel           0         0              2015 July              
+##  7 City Hotel           0         0              2015 July              
+##  8 City Hotel           0        84              2015 July              
+##  9 City Hotel           0        74              2015 July              
+## 10 City Hotel           0        75              2015 July              
+## # ℹ 5,393 more rows
+## # ℹ 27 more variables: arrival_date_week_number &lt;dbl&gt;,
+## #   arrival_date_day_of_month &lt;dbl&gt;, stays_in_weekend_nights &lt;dbl&gt;,
+## #   stays_in_week_nights &lt;dbl&gt;, adults &lt;dbl&gt;, children &lt;dbl&gt;, babies &lt;dbl&gt;,
+## #   meal &lt;chr&gt;, country &lt;chr&gt;, market_segment &lt;chr&gt;,
+## #   distribution_channel &lt;chr&gt;, is_repeated_guest &lt;dbl&gt;,
+## #   previous_cancellations &lt;dbl&gt;, previous_bookings_not_canceled &lt;dbl&gt;, …</code></pre>
 </div>
 <div id="exercise-5." class="section level3">
 <h3>Exercise 5.</h3>

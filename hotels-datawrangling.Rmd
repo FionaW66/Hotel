@@ -69,7 +69,7 @@ try out.
 ```{r some-children, eval=FALSE}
 hotels %>%
   filter(
-    children [AT LEAST] 1 [OR] babies [AT LEAST] 1
+    children >= 1 | babies >= 1
     )
 ```
 
@@ -81,14 +81,21 @@ number of bookings in resort hotels that have more than 1 child **or** baby
 in the room? Then, do the same for city hotels, and compare the numbers of 
 rows in the resulting filtered data frames.
 
+My intuition tells me that it's more likely to find bookings with children or babies in city hotels.
+Resort: 3929
+City: 5403
+City hotels have more children or babies.
+
 ```{r resort-children}
-# add code here
-# pay attention to correctness and code style
+hotels %>% 
+  filter(hotel == "Resort Hotel") %>% 
+  filter(children >= 1 | babies >= 1)
 ```
 
 ```{r city-children}
-# add code here
-# pay attention to correctness and code style
+hotels %>% 
+  filter(hotel == "City Hotel") %>% 
+  filter(children >= 1 | babies >= 1)
 ```
 
 ### Exercise 5.
