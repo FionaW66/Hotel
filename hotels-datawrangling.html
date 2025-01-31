@@ -2184,8 +2184,19 @@ themselves.</p>
 (<code>adr</code>) grouped by <code>hotel</code> type so that you can
 get these statistics separately for resort and city hotels. Which type
 of hotel is higher, on average?</p>
-<pre class="r"><code># add code here
-# pay attention to correctness and code style</code></pre>
+<p>City hotel is higher.</p>
+<pre class="r"><code>hotels %&gt;% 
+  group_by(hotel) %&gt;% 
+  summarize(min(adr, na.rm=TRUE), max(adr, na.rm=TRUE), 
+            mean(adr, na.rm=TRUE), median(adr, na.rm = TRUE))</code></pre>
+<pre><code>## # A tibble: 2 × 5
+##   hotel     min(adr, na.rm = TRU…¹ max(adr, na.rm = TRU…² mean(adr, na.rm = TR…³
+##   &lt;chr&gt;                      &lt;dbl&gt;                  &lt;dbl&gt;                  &lt;dbl&gt;
+## 1 City Hot…                   0                      5400                  105. 
+## 2 Resort H…                  -6.38                    508                   95.0
+## # ℹ abbreviated names: ¹​`min(adr, na.rm = TRUE)`, ²​`max(adr, na.rm = TRUE)`,
+## #   ³​`mean(adr, na.rm = TRUE)`
+## # ℹ 1 more variable: `median(adr, na.rm = TRUE)` &lt;dbl&gt;</code></pre>
 </div>
 <div id="exercise-8." class="section level3">
 <h3>Exercise 8.</h3>
@@ -2199,8 +2210,20 @@ reproducible way with some code.</p>
 <p><strong>Hint:</strong> For example, you can <code>filter</code> for
 the given <code>adr</code> amounts and <code>select</code> the relevant
 columns.</p>
-<pre class="r"><code># add code here
-# pay attention to correctness and code style</code></pre>
+<pre class="r"><code>hotels %&gt;% 
+  filter(adr == -6.38) %&gt;% 
+  select(arrival_date_year, arrival_date_month, adults, children, babies)</code></pre>
+<pre><code>## # A tibble: 1 × 5
+##   arrival_date_year arrival_date_month adults children babies
+##               &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+## 1              2017 March                   2        0      0</code></pre>
+<pre class="r"><code>hotels %&gt;% 
+  filter(adr == 5400) %&gt;% 
+  select(arrival_date_year, arrival_date_month, adults, children, babies)</code></pre>
+<pre><code>## # A tibble: 1 × 5
+##   arrival_date_year arrival_date_month adults children babies
+##               &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+## 1              2016 March                   2        0      0</code></pre>
 </div>
 </div>
 <div id="data-dictionary" class="section level2">
