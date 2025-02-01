@@ -131,14 +131,12 @@ For the canceled bookings, we can see that those really high numbers of adults a
 ```{r canceled adult frequency}
 hotels %>% 
   filter(is_canceled == 1) %>% 
-  count(adults) %>% 
-  arrange(desc(n))
+  count(adults, sort = TRUE)
 ```
 ```{r not canceled adult frequency}
 hotels %>% 
   filter(is_canceled == 0) %>% 
-  count(adults) %>% 
-  arrange(desc(n))
+  count(adults, sort = TRUE)
 ```
 
 ### Exercise 7.

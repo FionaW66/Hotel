@@ -2146,8 +2146,7 @@ didn’t, indicating that some hotels are letting children book by
 themselves.</p>
 <pre class="r"><code>hotels %&gt;% 
   filter(is_canceled == 1) %&gt;% 
-  count(adults) %&gt;% 
-  arrange(desc(n))</code></pre>
+  count(adults, sort = TRUE)</code></pre>
 <pre><code>## # A tibble: 14 × 2
 ##    adults     n
 ##     &lt;dbl&gt; &lt;int&gt;
@@ -2167,8 +2166,7 @@ themselves.</p>
 ## 14     55     1</code></pre>
 <pre class="r"><code>hotels %&gt;% 
   filter(is_canceled == 0) %&gt;% 
-  count(adults) %&gt;% 
-  arrange(desc(n))</code></pre>
+  count(adults, sort = TRUE)</code></pre>
 <pre><code>## # A tibble: 5 × 2
 ##   adults     n
 ##    &lt;dbl&gt; &lt;int&gt;
